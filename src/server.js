@@ -6,8 +6,8 @@ var body_parser_1 = require("body-parser");
 var cors_1 = require("cors");
 var swagger_ui_express_1 = require("swagger-ui-express");
 var swaggerDocument = require("./swagger.json");
-var database_1 = require("@/external/database");
 var api_1 = require("./api");
+var database_1 = require("./external/database");
 try {
     var app = (0, express_1.default)();
     app.use(body_parser_1.default.json({ limit: "50mb" }));
