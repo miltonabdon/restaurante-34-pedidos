@@ -44,7 +44,7 @@ describe("PedidoRepository", () => {
 
         };
 
-        const pedidoBuscado: any = await pedidoRepository.getPedidoById(novoPedido);
+        const pedidoBuscado: any = await pedidoRepository.getPedidoById(1);
 
         expect(pedidoBuscado).toBeDefined();
     })
