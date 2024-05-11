@@ -2,7 +2,7 @@ import { Pedido } from "./Pedido";
 
 interface StatusPedido {
     id: number;
-    pedido: Pedido[];
+    pedido: any;
     enumerador: string;
     createdAt: Date;
     updatedAt: Date;

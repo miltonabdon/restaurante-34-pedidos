@@ -1,23 +1,17 @@
-const prisma = require('./prisma'); // Import your Prisma instance
+import { PrismaClient } from '@prisma/client';
+import { DeepMockProxy, mockDeep, mockReset } from 'jest-mock-extended';
 
-async function createUser(name: any, email: any) {
-  return await prisma.user.create({
-    data: {
-      name,
-      email,
-    },
-  });
-}
+const prismaMock = mockDeep<PrismaClient>();
 
-async function getUserById(id: any) {
-  return await prisma.user.findUnique({
-    where: {
-      id,
-    },
-  });
-}
 
-module.exports = {
-  createUser,
-  getUserById,
-};
+jest.mock('@prisma/client', () => ({
+    __esModule: true,
+    default: prismaMock,
+}));
+
+
+beforeEach(() => {
+    mockReset(prismaMock)
+})
+
+export { prismaMock }

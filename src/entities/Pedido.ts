@@ -7,8 +7,8 @@ interface Pedido extends BaseEntity {
   clienteId: number;
   pagamentoId: number;
   statusPedidoId: number;
-  statusPedido: StatusPedido;
-  ProdutosDoPedido: ProdutosDoPedido[];
+  statusPedido: any;
+  ProdutosDoPedido: any;
 }
 
 export { Pedido };
