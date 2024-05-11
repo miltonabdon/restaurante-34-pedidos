@@ -16,7 +16,7 @@ afterAll(async () => {
 // Limpa o banco de dados antes de cada teste
 beforeEach(async () => {
   // Adapte para limpar as tabelas relevantes
-  await prisma.user.deleteMany({});
+  await prisma.pedido.deleteMany({});
   // ... outras entidades
 });
 
