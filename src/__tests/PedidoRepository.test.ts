@@ -15,10 +15,19 @@ jest.spyOn(mockPedidoRepository, "create")
         });
     });
 
+jest.spyOn(mockPedidoRepository, "getPedidoById")
+    .mockImplementation(async (id: number) => {
+        return await prisma.pedido.findUnique({
+            where: {
+                id: id,
+            },
+        }) as Pedido;
+    });
+
 describe("PedidoRepository", () => {
     let pedidoRepository: IPedidoRepository;
 
-    it("criar pedido", async () => {
+    it("get pedido", async () => {
         const statusPedido: any = {
             id: 1,
             enumerador: "Pronto",
@@ -35,8 +44,8 @@ describe("PedidoRepository", () => {
 
         };
 
-        const pedidoCriado: any = await pedidoRepository.create(novoPedido);
+        const pedidoBuscado: any = await pedidoRepository.getPedidoById(novoPedido);
 
-        expect(pedidoCriado).toBeDefined();
+        expect(pedidoBuscado).toBeDefined();
     })
 })
