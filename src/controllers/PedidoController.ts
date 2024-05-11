@@ -112,6 +112,7 @@ class PedidoController implements IPedidoController {
     }
 
     async getPedidosByStatus(req: Request, res: Response) {
+
         const { idStatusPedido } = req.params;
         try {
             if (!idStatusPedido) {
