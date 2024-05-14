@@ -1,6 +1,7 @@
 import { PedidoGateway } from "@/gateways/pedido";
 import { IPedidoGateway } from "@/interfaces";
 import mockPedidoRepository from "./MockPedidoRepository";
+import { Pedido } from "@/entities/Pedido";
 
 const mockPedidoGateway: IPedidoGateway = new PedidoGateway(mockPedidoRepository);
 
@@ -15,24 +16,24 @@ jest.spyOn(mockPedidoGateway, "createPedido")
     });
 
 jest.spyOn(mockPedidoGateway, "getPedidos")
-    .mockImplementation(async (pedido: Pedido[]) => {
-        return mockPedidoRepository.getPedidos(pedido);
+    .mockImplementation(async () => {
+        return mockPedidoRepository.getPedidos();
     });
 
 jest.spyOn(mockPedidoGateway, "getPedidosByStatus")
-    .mockImplementation(async (pedido: Pedido[]) => {
-        return mockPedidoRepository.getPedidosByStatus(pedido);
+    .mockImplementation(async (status: number) => {
+        return mockPedidoRepository.getPedidosByStatus(2);
     });
 
 jest.spyOn(mockPedidoGateway, "getPedidoByStatusFakeCheckout")
-    .mockImplementation(async (pedido: Pedido[]) => {
-        return mockPedidoRepository.getPedidoByStatusFakeCheckout(pedido);
+    .mockImplementation(async (status: string) => {
+        return mockPedidoRepository.getPedidoByStatusFakeCheckout(status);
     });
 
 
 jest.spyOn(mockPedidoGateway, "updatePedido")
     .mockImplementation(async (idPedido: number, statusPedido: string) => {
-        return mockPedidoRepository.updatePedido(1, "Em Preparo");
+        return mockPedidoRepository.updatePedido(idPedido, statusPedido);
     });
 
 

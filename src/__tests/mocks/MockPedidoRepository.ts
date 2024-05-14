@@ -15,13 +15,7 @@ jest.spyOn(mockPedidoRepository, "create")
         }) as Pedido;
     });
 
-jest.spyOn(mockPedidoRepository, "getPedidoById")
-    .mockImplementation(async (id: number) => {
-        return await prisma.pedido.findUnique({
-            where: {
-                id: id,
-            },
-        }) as Pedido;
-    });
+
+
 
 export default mockPedidoRepository;

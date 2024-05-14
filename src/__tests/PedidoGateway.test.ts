@@ -89,7 +89,11 @@ describe("PedidoGateway - deve criar pedido", () => {
     it("create pedido", async () => {
         const pedidos: any = await pedidoGateway.createPedido(pedidoFake);
 
+        expect(mockPedidoRepository.create).toHaveBeenCalledWith(pedidoFake);
+
         expect(pedidos).toBeDefined();
+        expect(pedidos.id).toBeDefined(); // Verifica se o ID foi definido
+        expect(pedidos.clienteId).toEqual(pedidoFake.clienteId); 
 
     })
 

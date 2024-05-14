@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1715647482423" clover="3.2.0">
-  <project timestamp="1715647482423" name="All files">
-    <metrics statements="152" coveredstatements="63" conditionals="1" coveredconditionals="0" methods="56" coveredmethods="20" elements="209" coveredelements="83" complexity="0" loc="152" ncloc="152" packages="6" files="10" classes="10"/>
+<coverage generated="1715676525546" clover="3.2.0">
+  <project timestamp="1715676525547" name="All files">
+    <metrics statements="167" coveredstatements="72" conditionals="1" coveredconditionals="0" methods="66" coveredmethods="21" elements="234" coveredelements="93" complexity="0" loc="167" ncloc="167" packages="6" files="10" classes="10"/>
     <package name="__tests.mocks">
-      <metrics statements="36" coveredstatements="28" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="6"/>
+      <metrics statements="51" coveredstatements="33" conditionals="0" coveredconditionals="0" methods="23" coveredmethods="6"/>
       <file name="MockPedidoGateway.ts" path="/Users/miltonjunior/Documents/GitHub/restaurante-34-pedidos/src/__tests/mocks/MockPedidoGateway.ts">
-        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <metrics statements="22" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
       </file>
       <file name="MockPedidoRepository.ts" path="/Users/miltonjunior/Documents/GitHub/restaurante-34-pedidos/src/__tests/mocks/MockPedidoRepository.ts">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
@@ -20,8 +35,8 @@
         <line num="3" count="3" type="stmt"/>
         <line num="6" count="3" type="stmt"/>
         <line num="8" count="3" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
         <line num="18" count="3" type="stmt"/>
         <line num="19" count="3" type="stmt"/>
         <line num="20" count="3" type="stmt"/>
@@ -66,9 +81,9 @@
       </file>
     </package>
     <package name="external.repositories">
-      <metrics statements="57" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="5"/>
+      <metrics statements="57" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="6"/>
       <file name="PedidoRepository.ts" path="/Users/miltonjunior/Documents/GitHub/restaurante-34-pedidos/src/external/repositories/PedidoRepository.ts">
-        <metrics statements="38" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="4"/>
+        <metrics statements="38" coveredstatements="21" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="5"/>
         <line num="10" count="3" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
@@ -80,32 +95,32 @@
         <line num="36" count="0" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="44" count="1" type="stmt"/>
-        <line num="45" count="1" type="stmt"/>
-        <line num="61" count="1" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="64" count="1" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
         <line num="66" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
-        <line num="72" count="1" type="stmt"/>
-        <line num="73" count="1" type="stmt"/>
-        <line num="93" count="1" type="stmt"/>
-        <line num="94" count="1" type="stmt"/>
-        <line num="96" count="1" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="93" count="2" type="stmt"/>
+        <line num="94" count="2" type="stmt"/>
+        <line num="96" count="2" type="stmt"/>
         <line num="98" count="0" type="stmt"/>
         <line num="99" count="0" type="stmt"/>
-        <line num="104" count="1" type="stmt"/>
-        <line num="105" count="1" type="stmt"/>
-        <line num="126" count="1" type="stmt"/>
-        <line num="127" count="1" type="stmt"/>
-        <line num="129" count="1" type="stmt"/>
+        <line num="104" count="2" type="stmt"/>
+        <line num="105" count="2" type="stmt"/>
+        <line num="126" count="2" type="stmt"/>
+        <line num="127" count="2" type="stmt"/>
+        <line num="129" count="2" type="stmt"/>
         <line num="131" count="0" type="stmt"/>
         <line num="132" count="0" type="stmt"/>
-        <line num="137" count="0" type="stmt"/>
-        <line num="138" count="0" type="stmt"/>
+        <line num="137" count="1" type="stmt"/>
+        <line num="138" count="1" type="stmt"/>
         <line num="150" count="0" type="stmt"/>
-        <line num="153" count="0" type="stmt"/>
-        <line num="154" count="0" type="stmt"/>
+        <line num="153" count="1" type="stmt"/>
+        <line num="154" count="1" type="stmt"/>
         <line num="163" count="3" type="stmt"/>
       </file>
       <file name="ProdutosDoPedidoRepository.ts" path="/Users/miltonjunior/Documents/GitHub/restaurante-34-pedidos/src/external/repositories/ProdutosDoPedidoRepository.ts">
