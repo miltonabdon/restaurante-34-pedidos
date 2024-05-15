@@ -15,6 +15,10 @@ class PedidoUseCase implements IPedidoUseCase {
         this.produtosDoPedidoGateway = produtosDoPedidoGateway;
         this.pedidoGateway = pedidoGateway;
     }
+    executeDelete(idPedido: number) {
+        throw new Error("Method not implemented.");
+    }
+   
 
     async executeCreation(pedidoData: Pedido): Promise<Pedido> {
         pedidoData.statusPedidoId = EnumStatusPedido.RECEBIDO.id;
@@ -44,13 +48,10 @@ class PedidoUseCase implements IPedidoUseCase {
         return this.produtosDoPedidoGateway.createProdutosDoPedido(produtosDoPedido);        
     }
 
-    executeRemoveProdutoDoPedido(idPedido: number, idProdutos: number) {
-        throw new Error("Method executeRemoveProdutoAoPedido not implemented.");
+    async executeRemoveProdutoDoPedido(idPedido: number, idProdutos: number) {
+        return this.produtosDoPedidoGateway.removeProdutoDoPedido(idPedido, idProdutos)
     }
 
-    executeDelete(id: number) {
-        throw new Error("Method executeDelete not implemented.");
-    }
 
     async executeUpdatePedidoFinalizado(idPedido: number) {
         try {

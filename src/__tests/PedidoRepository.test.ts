@@ -14,63 +14,45 @@ describe("PedidoRepository - getPedidoById", () => {
 
         expect(pedidoBuscado).toBeDefined();
     })
-})
 
-describe("PedidoRepository - getPedidos", () => {
-    let pedidoRepository: IPedidoRepository = mockPedidoRepository;
-    it("lista pedidos", async () => {
+    it("getPedidos", async () => {
         const pedidos: any = await pedidoRepository.getPedidos();
 
         expect(pedidos).toBeDefined();
     })
 
-
-})
-
-describe("PedidoRepository - getPedidos", () => {
-    let pedidoRepository: IPedidoRepository = mockPedidoRepository;
-    it("lista por status", async () => {
+    it("getPedidosByStatus", async () => {
         const pedidos: any = await pedidoRepository.getPedidosByStatus(1);
 
         expect(pedidos).toBeDefined();
     })
 
-})
-
-describe("PedidoRepository - getPedidosFakeCheckout", () => {
-    let pedidoRepository: IPedidoRepository = mockPedidoRepository;
     it("lista por status checkout", async () => {
         const pedidos: any = await pedidoRepository.getPedidoByStatusFakeCheckout("Em");
 
         expect(pedidos).toBeDefined();
     })
 
-})
 
-describe("PedidoRepository - updatePedido", () => {
-    let pedidoRepository: IPedidoRepository = mockPedidoRepository;
     it("atualiza pedido", async () => {
-       
-            const pedidos: any = await pedidoRepository.updatePedido(2, "Em preparo");
-
-            // O teste falha se o resultado for indefinido
-            expect(pedidos).toThrow()
-       
+        try {
+            const pedido = await pedidoRepository.updatePedido(1, "Pronto");
+            expect(pedido).toBeDefined();
+        } catch (error) {
+            fail("Erro ao atualizar pedido");
+        }
     });
-});
 
-
-describe("PedidoRepository - create", () => {
-    let pedidoRepository: IPedidoRepository = mockPedidoRepository;
 
     const pedido = criarPedidoFake()
-
     it("create", async () => {
         const pedidoBuscado: any = await pedidoRepository.create(pedido);
 
         expect(pedidoBuscado).toBeDefined();
     })
+
 })
+
 
 
 function criarPedidoFake(): Pedido {

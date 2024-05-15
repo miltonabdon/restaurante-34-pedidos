@@ -22,7 +22,7 @@ jest.spyOn(mockPedidoGateway, "getPedidos")
 
 jest.spyOn(mockPedidoGateway, "getPedidosByStatus")
     .mockImplementation(async (status: number) => {
-        return mockPedidoRepository.getPedidosByStatus(2);
+        return mockPedidoRepository.getPedidosByStatus(status);
     });
 
 jest.spyOn(mockPedidoGateway, "getPedidoByStatusFakeCheckout")

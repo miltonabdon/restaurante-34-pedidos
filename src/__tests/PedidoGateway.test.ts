@@ -4,6 +4,7 @@ import { ProdutosDoPedido } from "@/entities/ProdutosDoPedido";
 import StatusPedido from "@/entities/StatusPedido";
 import { PedidoGateway } from "@/gateways/pedido";
 import { IPedidoGateway } from "@/interfaces";
+import exp from "constants";
 import mockPedidoRepository from "./mocks/MockPedidoRepository";
 
 
@@ -95,7 +96,20 @@ describe("PedidoGateway - deve criar pedido", () => {
         expect(pedidos.id).toBeDefined(); // Verifica se o ID foi definido
         expect(pedidos.clienteId).toEqual(pedidoFake.clienteId); 
 
-    })
+    });
+
+    it("update pedido", async () => {
+        try {
+            const pedidoAtualizado: any = await pedidoGateway.updatePedido(1, "Pronto");
+            expect(pedidoAtualizado).toBeDefined();
+        } catch (error) {
+            throw new Error(`Erro ao Atualizar Pedido de Id 1`);
+        }
+    });
+    
+
+
+
 
     
 })
