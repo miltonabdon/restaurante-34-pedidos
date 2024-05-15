@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.54% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/22</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.54% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/22</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -115,29 +115,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -154,29 +154,29 @@ jest.spyOn(mockPedidoGateway, "getPedidoById")
     });
 &nbsp;
 jest.spyOn(mockPedidoGateway, "createPedido")
-    .mockImplementation(<span class="fstat-no" title="function not covered" >async (p</span>edido: Pedido) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >        return mockPedidoRepository.create(pedido);</span>
+    .mockImplementation(async (pedido: Pedido) =&gt; {
+        return mockPedidoRepository.create(pedido);
     });
 &nbsp;
 jest.spyOn(mockPedidoGateway, "getPedidos")
-    .mockImplementation(<span class="fstat-no" title="function not covered" >async () =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >        return mockPedidoRepository.getPedidos();</span>
+    .mockImplementation(async () =&gt; {
+        return mockPedidoRepository.getPedidos();
     });
 &nbsp;
 jest.spyOn(mockPedidoGateway, "getPedidosByStatus")
-    .mockImplementation(<span class="fstat-no" title="function not covered" >async (s</span>tatus: number) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >        return mockPedidoRepository.getPedidosByStatus(2);</span>
+    .mockImplementation(async (status: number) =&gt; {
+        return mockPedidoRepository.getPedidosByStatus(status);
     });
 &nbsp;
 jest.spyOn(mockPedidoGateway, "getPedidoByStatusFakeCheckout")
-    .mockImplementation(<span class="fstat-no" title="function not covered" >async (s</span>tatus: string) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >        return mockPedidoRepository.getPedidoByStatusFakeCheckout(status);</span>
+    .mockImplementation(async (status: string) =&gt; {
+        return mockPedidoRepository.getPedidoByStatusFakeCheckout(status);
     });
 &nbsp;
 &nbsp;
 jest.spyOn(mockPedidoGateway, "updatePedido")
-    .mockImplementation(<span class="fstat-no" title="function not covered" >async (i</span>dPedido: number, statusPedido: string) =&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >        return mockPedidoRepository.updatePedido(idPedido, statusPedido);</span>
+    .mockImplementation(async (idPedido: number, statusPedido: string) =&gt; {
+        return mockPedidoRepository.updatePedido(idPedido, statusPedido);
     });
 &nbsp;
 &nbsp;
@@ -187,7 +187,7 @@ export default mockPedidoGateway;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-05-14T08:48:45.527Z
+                at 2024-05-15T02:09:14.863Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
