@@ -22,7 +22,7 @@ export class PedidoGateway implements IPedidoGateway {
     }
 
     async getPedidosByStatus(idStatusPedido: number): Promise<Pedido[]> {
-        return this.pedidoRepository.getPedidosByStatus(idStatusPedido);        
+        return this.pedidoRepository.getPedidosByStatus(idStatusPedido);
     }
 
     async getPedidoByStatusFakeCheckout(statusPedido: string): Promise<Pedido[]> {
@@ -42,7 +42,10 @@ export class PedidoGateway implements IPedidoGateway {
         }
     }
 
-    
+    async updatePedidoCompleto(pedido: Pedido): Promise<Pedido> {
+        return this.pedidoRepository.updatePedidoCompleto(pedido);
+    }
 
-    
+
+
 }

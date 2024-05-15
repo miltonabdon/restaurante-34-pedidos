@@ -1,5 +1,6 @@
 
 import { Pedido } from "@/entities/Pedido";
+import { getDescricaoStatusPedido } from "@/enums/EnumStatusPedido";
 import { IPedidoRepository } from "@/interfaces";
 import { PrismaClient } from "@prisma/client";
 
@@ -50,11 +51,11 @@ class PedidoRepository implements IPedidoRepository {
                             enumerador: true,
                         },
                     },
-                    cliente: {
-                        select: {
-                            nome: true,
-                        },
-                    },
+                    // cliente: {
+                    //     select: {
+                    //         nome: true,
+                    //     },
+                    // },
                 },
             });
 
@@ -77,11 +78,11 @@ class PedidoRepository implements IPedidoRepository {
                     },
                 },
                 include: {
-                    cliente: {
-                        select: {
-                            nome: true,
-                        },
-                    },
+                    // cliente: {
+                    //     select: {
+                    //         nome: true,
+                    //     },
+                    // },
                     statusPedido: {
                         select: {
                             enumerador: true,
@@ -111,11 +112,11 @@ class PedidoRepository implements IPedidoRepository {
                     },
                 },
                 include: {
-                    cliente: {
-                        select: {
-                            nome: true,
-                        },
-                    },
+                    // cliente: {
+                    //     select: {
+                    //         nome: true,
+                    //     },
+                    // },
                     statusPedido: {
                         select: {
                             enumerador: true,
@@ -148,16 +149,36 @@ class PedidoRepository implements IPedidoRepository {
                 },
             });
             return pedidoResponse as Pedido;
-            
+
         } catch (error) {
             console.error("Erro ao buscar pedidos por status:", error);
             throw new Error("Erro ao buscar pedidos por status.");
         }
     }
 
-    
-
-    
+    async updatePedidoCompleto(pedido: Pedido): Promise<Pedido> {
+        try {
+            const status = getDescricaoStatusPedido(pedido.statusPedido.id)
+            const pedidoResponse = await this.prismaClient.pedido.update({
+                where: {
+                    id: pedido.id,
+                },
+                data: {
+                    clienteId: pedido.clienteId,
+                    pagamentoId: pedido.pagamentoId,
+                    statusPedido: {
+                        connect: {
+                            enumerador: status,
+                        },
+                    }
+                }
+            });
+            return pedidoResponse as Pedido;
+        } catch (error) {
+            console.error("Erro ao atualizar pedido: ", error);
+            throw new Error("Erro ao atualizar pedido.");
+        }
+    }
 }
 
 export default PedidoRepository;

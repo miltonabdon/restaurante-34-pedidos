@@ -1,19 +1,25 @@
 import { IPedidoGateway, IPedidoUseCase, IProdutoDoPedidoGateway } from "@/interfaces";
 
-import { ProdutosDoPedido } from "@/entities/ProdutosDoPedido";
 import { Pedido } from "@/entities/Pedido";
+import { ProdutosDoPedido } from "@/entities/ProdutosDoPedido";
 import { EnumStatusPedido } from "@/enums/EnumStatusPedido";
+import { IPagamentoGateway } from "@/interfaces/gateway/IPagamentoGateway";
+import { NovoPagamentoDTO } from "@/dtos/NovoPagamentoDTO";
+import { TipoPagamento } from "@/enums/TipoPagamento";
 
 class PedidoUseCase implements IPedidoUseCase {
     private produtosDoPedidoGateway: IProdutoDoPedidoGateway;
     private pedidoGateway: IPedidoGateway;
+    private pagamentoGateway: IPagamentoGateway;
 
     constructor(
         produtosDoPedidoGateway: IProdutoDoPedidoGateway,
-        pedidoGateway: IPedidoGateway
+        pedidoGateway: IPedidoGateway,
+        pagamentoGateway: IPagamentoGateway
     ) {
         this.produtosDoPedidoGateway = produtosDoPedidoGateway;
         this.pedidoGateway = pedidoGateway;
+        this.pagamentoGateway = pagamentoGateway;
     }
 
     async executeCreation(pedidoData: Pedido): Promise<Pedido> {
@@ -23,7 +29,7 @@ class PedidoUseCase implements IPedidoUseCase {
     }
 
     async executeGetPedidoById(idPedido: number): Promise<Pedido> {
-        return this.pedidoGateway.getPedidoById(idPedido);        
+        return this.pedidoGateway.getPedidoById(idPedido);
     }
 
     async executeGetPedidos(): Promise<Pedido[]> {
@@ -33,7 +39,7 @@ class PedidoUseCase implements IPedidoUseCase {
     }
 
     async executeGetPedidosByStatus(idStatusPedido: number): Promise<Pedido[]> {
-        return this.pedidoGateway.getPedidosByStatus(idStatusPedido);            
+        return this.pedidoGateway.getPedidosByStatus(idStatusPedido);
     }
 
     async executeGetPedidoFakeCheckout(status: string): Promise<Pedido[]> {
@@ -41,7 +47,7 @@ class PedidoUseCase implements IPedidoUseCase {
     }
 
     async executeAddProdutosAoPedido(produtosDoPedido: ProdutosDoPedido[]): Promise<any> {
-        return this.produtosDoPedidoGateway.createProdutosDoPedido(produtosDoPedido);        
+        return this.produtosDoPedidoGateway.createProdutosDoPedido(produtosDoPedido);
     }
 
     executeRemoveProdutoDoPedido(idPedido: number, idProdutos: number) {
@@ -54,12 +60,30 @@ class PedidoUseCase implements IPedidoUseCase {
 
     async executeUpdatePedidoFinalizado(idPedido: number) {
         try {
-            const response = await this.pedidoGateway.updatePedido(
-                idPedido,
-                "Finalizado"
-            );
+            const valor = await this.calculaValorDoPedido(idPedido);
 
-            return response;
+            const novoPagamentoDTO: NovoPagamentoDTO = {
+                idPedido: idPedido,
+                valor: valor,
+                tipoPagamento: TipoPagamento.PIX
+            }
+            let pagamentoId;
+
+            await this.pagamentoGateway.createPagamento(novoPagamentoDTO).then(async res => {
+                pagamentoId = res.data.idPagamento;
+            }).catch(error => {
+                console.error("Error ao criar novo pagamento:", error);
+                throw new Error(error);
+            });
+
+            const pedidoParaAtualizar: any = {
+                id: idPedido,
+                pagamentoId: pagamentoId,
+                statusPedido: EnumStatusPedido.FINALIZADO
+            }
+            const pedido = await this.pedidoGateway.updatePedidoCompleto(pedidoParaAtualizar);
+
+            return pedido;
         } catch (error) {
             throw error;
         }
@@ -78,9 +102,6 @@ class PedidoUseCase implements IPedidoUseCase {
         }
     }
 
-    
-    
-
     async executeUpdatePedidoPronto(idPedido: number) {
         try {
             const response = await this.pedidoGateway.updatePedido(
@@ -93,10 +114,6 @@ class PedidoUseCase implements IPedidoUseCase {
             throw error;
         }
     }
-
-    
-
-    
 
     async executeGetProdutoDoPedido(idPedido: number) {
         try {
@@ -115,6 +132,23 @@ class PedidoUseCase implements IPedidoUseCase {
 
         return [...pedidosPronto, ...pedidosEmPreparacao, ...pedidosRecebido];
     }
+
+    private async calculaValorDoPedido(pedidoId: number): Promise<number> {
+        let total: number = 0;
+        const produtosDoPedido: ProdutosDoPedido[] = await this.produtosDoPedidoGateway.getProdutosDoPedido(pedidoId);
+
+        if (produtosDoPedido.length === 0) {
+            return total;
+        } else if (produtosDoPedido.length === 1) {
+            return produtosDoPedido[0].quantidade * produtosDoPedido[0].valor;
+        } else {
+            produtosDoPedido.forEach((produto: any) => {
+                total += produto.quantidade * produto.valor;
+            });
+            return total;
+        }
+    }
+
 }
 
 export default PedidoUseCase;
