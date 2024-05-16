@@ -15,8 +15,20 @@ class PedidoUseCase implements IPedidoUseCase {
         this.produtosDoPedidoGateway = produtosDoPedidoGateway;
         this.pedidoGateway = pedidoGateway;
     }
-    executeDelete(idPedido: number) {
-        throw new Error("Method not implemented.");
+    async executeDelete(idPedido: number) {
+        try {
+            // Obtém os itens do pedido
+            const itensPedido = await this.executeGetProdutoDoPedido(idPedido);
+    
+            // Remove os itens do pedido
+            await this.produtosDoPedidoGateway.deleteProdutosDoPedido(itensPedido);
+    
+            // Retorna uma mensagem de sucesso
+            return 'Itens do pedido removidos com sucesso.';
+        } catch (error) {
+            console.error("Erro ao excluir itens do pedido:", error);
+            throw new Error("Erro ao excluir itens do pedido.");
+        }
     }
    
 
@@ -59,10 +71,11 @@ class PedidoUseCase implements IPedidoUseCase {
                 idPedido,
                 "Finalizado"
             );
-
+    
             return response;
         } catch (error) {
-            throw error;
+            console.error("Erro ao atualizar pedido para finalizado:", error);
+            throw new Error(`Erro ao atualizar pedido para finalizado: ${error}`);
         }
     }
 

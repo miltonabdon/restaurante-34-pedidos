@@ -9,10 +9,19 @@ export class ProdutoDoPedidoGateway implements IProdutoDoPedidoGateway {
         this.produtoDoPedidoRepository = produtoDoPedidoRepository;
     }
     executeRemoveProdutoDoPedido(idPedido: number, idProdutos: number) {
-        throw new Error("Method not implemented.");
+        try {
+            const produto: any = this.getProdutosDoPedido(idPedido)
+            this.produtoDoPedidoRepository.delete(produto);
+            return 'Produto removido do pedido com sucesso.';
+        } catch (error) {
+            console.error("Erro ao remover produto(s) no pedido:", error);
+            throw new Error("Erro ao remover produto(s) no pedido.");
+        }
     }
     removeProdutoDoPedido(idPedido: number, idProdutos: number) {
-        throw new Error("Method not implemented.");
+        const produto: any = this.getProdutosDoPedido(idPedido)
+
+        this.produtoDoPedidoRepository.delete(produto);
     }
 
     async createProdutosDoPedido(produtosDoPedido: ProdutosDoPedido[]): Promise<any> {
