@@ -6,6 +6,7 @@ export interface IPedidoGateway {
     getPedidos(): Promise<Pedido[]>;
     getPedidosByStatus(idStatusPedido: number): Promise<Pedido[]>;
     getPedidoByStatusFakeCheckout(statusPedido: string): Promise<Pedido[]>;
-    
+
     updatePedido(idPedido: number, statusPedido: string): Promise<Pedido>;
+    updatePedidoCompleto(pedido: Pedido): Promise<Pedido>;
 }

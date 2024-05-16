@@ -1,9 +1,10 @@
-import { Application } from "express";
-import { PrismaClient } from "@prisma/client";
-import PedidoRepository from "@/external/repositories/PedidoRepository";
 import PedidoController from "@/controllers/PedidoController";
-import PedidoRoutes from "./pedido";
+import PagamentoRestApi from "@/external/http/PagamentoRestApi";
+import PedidoRepository from "@/external/repositories/PedidoRepository";
 import ProdutosDoPedidoRepository from "@/external/repositories/ProdutosDoPedidoRepository";
+import { PrismaClient } from "@prisma/client";
+import { Application } from "express";
+import PedidoRoutes from "./pedido";
 
 const BASE_URL = "/api";
 
@@ -22,9 +23,12 @@ export class routes {
         const produtosDoPedidoRepository = new ProdutosDoPedidoRepository(
             this.prisma
         );
+        const pagamentoRestAPI = new PagamentoRestApi();
+        
         const pedidoController = new PedidoController(
             pedidoRepository,
-            produtosDoPedidoRepository
+            produtosDoPedidoRepository,
+            pagamentoRestAPI
         );
         const pedidoRoutes = new PedidoRoutes(
             this.app,

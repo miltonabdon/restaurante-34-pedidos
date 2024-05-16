@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "scripts": {
     "test": "jest --config=jest.config.cjs",
     "test:watch": "jest --watch",
@@ -10,8 +13,8 @@
     "start": "tsc && npx prisma generate && ts-node -r tsconfig-paths/register public/src/server.js",
     "dev": "tsx watch src/server.ts",
     "build": "npx prisma generate && tsc",
-    "prisma-setup": "npx prisma migrate dev --name init && npx prisma db seed",
-    "prisma:seed": "ts-node prisma/seed.ts"
+    "prisma-setup": "npx prisma migrate dev --name init && npx prisma db seed"
+    
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,7 @@
   "homepage": "https://github.com/miltonabdon/restaurante-34-pedidos#readme",
   "dependencies": {
     "@prisma/client": "^5.12.1",
+    "axios": "^1.6.8",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
