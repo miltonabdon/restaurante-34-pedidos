@@ -51,17 +51,17 @@ class ProdutosDoPedidoRepository implements IProdutosDoPedidoRepository {
     }
 
     async get(idPedido: number): Promise<any> {
-        try {
+       // try {
             const response = await this.prismaClient.produtosDoPedido.findMany({
                 where: {
                     pedidoId: idPedido
                 }
             });
             return response;
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
+        // } catch (error) {
+        //     console.error(error);
+        //     throw error;
+        // }
     }
 }
 
